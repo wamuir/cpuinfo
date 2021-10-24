@@ -27,6 +27,8 @@ bool CPUINFO_ABI cpuinfo_initialize(void) {
 		pthread_once(&init_guard, &cpuinfo_x86_mach_init);
 	#elif defined(__linux__)
 		pthread_once(&init_guard, &cpuinfo_x86_linux_init);
+	#elif defined(__FreeBSD__)
+		pthread_once(&init_guard, &cpuinfo_x86_freebsd_init);
 	#elif defined(_WIN32) || defined(__CYGWIN__)
 		InitOnceExecuteOnce(&init_guard, &cpuinfo_x86_windows_init, NULL, NULL);
 	#else
